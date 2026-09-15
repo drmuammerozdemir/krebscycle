@@ -3,8 +3,8 @@ import streamlit.components.v1 as components
 
 # Sayfa Yapılandırması (Geniş Ekran ve Tıbbi Tema)
 st.set_page_config(
-    page_title="Krebs Siklusu & PDH İnteraktif Öğrenme Platformu",
-    page_icon="🧬",
+    page_title="Krebs Siklusu, PDH ve Enerji Hasadı İnteraktif İstasyon",
+    page_icon="⚡",
     layout="wide",
     initial_sidebar_state="expanded"
 )
@@ -20,18 +20,17 @@ st.markdown("""
         font-family: 'DM Sans', sans-serif;
     }
     
-    /* Üst Başlık Banner */
     .top-header {
         background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
         border: 1px solid #334155;
         border-radius: 16px;
-        padding: 20px 28px;
-        margin-bottom: 20px;
+        padding: 18px 24px;
+        margin-bottom: 16px;
         box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5);
     }
     .top-header h1 {
         font-family: 'Space Grotesk', sans-serif;
-        font-size: 26px;
+        font-size: 24px;
         font-weight: 700;
         color: #f8fafc;
         margin: 0;
@@ -39,7 +38,7 @@ st.markdown("""
     }
     .top-header p {
         color: #38bdf8;
-        font-size: 14px;
+        font-size: 13.5px;
         margin: 6px 0 0 0;
     }
     .badge-pill {
@@ -53,10 +52,9 @@ st.markdown("""
         background-color: rgba(56, 189, 248, 0.15);
         color: #38bdf8;
         border: 1px solid rgba(56, 189, 248, 0.3);
-        margin-bottom: 8px;
+        margin-bottom: 6px;
     }
     
-    /* Sidebar stillendirmesi */
     [data-testid="stSidebar"] {
         background-color: #0f172a;
         border-right: 1px solid #1e293b;
@@ -68,55 +66,49 @@ st.markdown("""
 st.markdown("""
 <div class="top-header">
     <span class="badge-pill">KTO Karatay Tıp Fakültesi • Tıbbi Biyokimya AD</span>
-    <h1>Krebs Döngüsü & PDH Çift Yönlü İnteraktif İstasyon</h1>
-    <p>Sol taraftaki <strong>Kelime Avı</strong>'nda yatay ve dikey gizlenmiş 17 metabolit, kofaktör ve klinik terimi bulun; açılan parçaları sağdaki <strong>PDH Köprüsü ve Dairesel Krebs Siklusu</strong> hedef alanlarına yerleştirin.</p>
+    <h1>Krebs Döngüsü, PDH Köprüsü & Enerji Hasadı (NADH • FADH₂ • GTP) İnteraktif İstasyon</h1>
+    <p>Kelime avında 10 yatay ve 10 dikey gizlenmiş <strong>20 terimi</strong> (metabolitler, PDH kofaktörleri, klinik blokajlar ve enerji ürünleri <strong>NADH, FADH₂ ve GTP</strong>) bulun; sağdaki reaksiyon basamaklarına ve enerji çıkış noktalarına yerleştirin!</p>
 </div>
 """, unsafe_allow_html=True)
 
-# Yan Panel (Sidebar) Kontrolleri
+# Yan Panel (Sidebar)
 with st.sidebar:
-    st.header("🎯 Etkinlik Kontrolü")
+    st.header("🎯 Etkinlik & Enerji Bilanço")
     st.markdown("""
     **Ders:** Tıbbi Biyokimya  
-    **Konu:** Krebs Döngüsü & PDH Kompleksi  
+    **Konu:** Krebs Döngüsü, PDH & Enerji Hasadı  
     **Eğitici:** Dr. Muammer Özdemir (2026-2027)
     """)
     st.divider()
-    
-    st.subheader("💡 Nasıl Oynanır?")
+
+    st.subheader("⚡ 1 Tur Krebs Enerji Bilançosu")
     st.markdown("""
-    1. **Kelimeyi Seçin:**  
-    Soldaki matriste fareyle sürükleyerek veya dokunmatik ekranda parmağınızı kaydırarak aranan kelimeleri bulun.
-    2. **Şemayı Tamamlayın (17 Hedef Alan):**  
-    • **PDH İstasyonu:** Tiamin, TPP, Koenzim A, Lipoik Asit, FAD, NADH  
-    • **Klinik Blokajlar:** Arsenik, Beriberi, Floroasetat, Malonat  
-    • **Krebs Siklusu:** Sitrat, İzositrat, Süksinil-KoA, Süksinat, Fumarat, Malat, Oksaloasetat  
-    3. **Mobil Uyumluluk:**  
-    Masaüstünde parçayı sürükleyip bırakabilir; mobil cihazlarda açılan parçaya dokunup ardından gitmesi gereken kutucuğa tıklayarak da yerleştirebilirsiniz.
+    • **3 NADH** &rarr; 7.5 ATP  
+      *(İzositrat DH, &alpha;-KG DH, Malat DH)*  
+    • **1 FADH₂** &rarr; 1.5 ATP  
+      *(Süksinat DH / Kompleks II)*  
+    • **1 GTP** &rarr; 1 ATP  
+      *(Süksinil-KoA Sentetaz / Substrat Düzeyi)*  
+    **TOPLAM: 10 ATP / Asetil-KoA**
     """)
     st.divider()
 
-    st.subheader("📚 TUS & Komite Kodlamaları")
-    with st.expander("PDH 5 Kofaktörü"):
-        st.write("**Tenha Lokantada Köfte, Fasulye, Nohut**")
-        st.caption("TPP (B1), Lipoik Asit, KoA (B5), FAD (B2), NAD⁺ (B3)")
-    with st.expander("Siklus Ara Ürünleri"):
-        st.write("**Sonunda İki Kardeş Fırından Malatya Otlu Ekmeği Aldı**")
-        st.caption("Sitrat → İzositrat → α-KG → Süksinil-KoA → Süksinat → Fumarat → Malat → Oksaloasetat")
-    with st.expander("Klinik Blokajlar & Toksinler"):
-        st.write("• **Arsenik:** E2 lipoik asidin -SH gruplarını bağlar.")
-        st.write("• **Beriberi:** B1 (Tiamin/TPP) eksikliğinde E1 durur.")
-        st.write("• **Floroasetat:** Florositrata döner; akonitazı bloke eder.")
-        st.write("• **Malonat:** Kompleks II'yi (SDH) kompetitif inhibe eder.")
+    st.subheader("💡 Nasıl Oynanır?")
+    st.markdown("""
+    1. **Süre Sayacı:** Canlı sayaç otomatik çalışır, 20 hedefin tamamı yerleşince süreniz tescillenir.
+    2. **Kelime Avı (15x15 Matris):** Yatay ve dikey kelimeleri fareyle veya parmağınızla seçin.
+    3. **Şemaya Yerleştirme:** Açılan parçaları sürükleyebilir veya tıklayıp hedef kutucuğa dokunabilirsiniz.
+    4. **Enerji Çıkışları:** Reaksiyon 5'teki **GTP** ve Reaksiyon 6'daki **FADH₂** ile PDH'deki **NADH** yuvalarına dikkat edin!
+    """)
 
-# HTML5 / JavaScript / CSS Entegre İnteraktif Uygulama Kodu
+# Entegre HTML5 / CSS / JavaScript Kodu
 interactive_app_code = """
 <!DOCTYPE html>
 <html lang="tr">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Space+Grotesk:wght@600;700&family=JetBrains+Mono:wght@700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Space+Grotesk:wght@600;700&family=JetBrains+Mono:wght@600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <style>
     * {
@@ -133,16 +125,15 @@ interactive_app_code = """
         overflow-x: hidden;
     }
 
-    /* İki Sütunlu Ana Grid */
     .app-wrapper {
         display: grid;
-        grid-template-columns: 480px 1fr;
+        grid-template-columns: 530px 1fr;
         gap: 18px;
         width: 100%;
-        min-height: 980px;
+        min-height: 1020px;
     }
 
-    @media (max-width: 1100px) {
+    @media (max-width: 1180px) {
         .app-wrapper {
             grid-template-columns: 1fr;
         }
@@ -169,7 +160,7 @@ interactive_app_code = """
 
     .panel-title {
         font-family: 'Space Grotesk', sans-serif;
-        font-size: 17px;
+        font-size: 16px;
         font-weight: 700;
         color: #38bdf8;
         display: flex;
@@ -178,19 +169,37 @@ interactive_app_code = """
         margin: 0;
     }
 
+    .header-badges {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
     .score-badge {
         background: rgba(56, 189, 248, 0.12);
         color: #38bdf8;
         border: 1px solid rgba(56, 189, 248, 0.3);
         padding: 4px 10px;
         border-radius: 20px;
-        font-size: 12px;
+        font-size: 11.5px;
         font-weight: 700;
     }
 
-    /* =========================================================
-    SOL TARAF: KELİME AVI (WORD SEARCH GRID)
-    ========================================================= */
+    .timer-badge {
+        background: rgba(245, 158, 11, 0.15);
+        color: #fbbf24;
+        border: 1px solid rgba(245, 158, 11, 0.35);
+        padding: 4px 11px;
+        border-radius: 20px;
+        font-size: 12px;
+        font-weight: 700;
+        font-family: 'JetBrains Mono', monospace;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+    }
+
+    /* 15x15 Kelime Avı Izgarası */
     .grid-container {
         display: flex;
         justify-content: center;
@@ -199,7 +208,7 @@ interactive_app_code = """
         border: 2px solid #334155;
         border-radius: 12px;
         padding: 6px;
-        margin-bottom: 12px;
+        margin-bottom: 10px;
         touch-action: none;
     }
 
@@ -209,24 +218,24 @@ interactive_app_code = """
     }
 
     .ws-cell {
-        width: 30px;
-        height: 30px;
+        width: 31px;
+        height: 31px;
         border: 1px solid #1e293b;
         text-align: center;
         vertical-align: middle;
         font-family: 'JetBrains Mono', monospace;
-        font-size: 13.5px;
+        font-size: 13px;
         font-weight: 700;
         color: #cbd5e1;
         cursor: pointer;
-        transition: background 0.15s ease, transform 0.1s ease;
+        transition: background 0.12s ease, transform 0.1s ease;
     }
 
     .ws-cell.selecting {
         background-color: #38bdf8 !important;
         color: #0b1120 !important;
         border-radius: 4px;
-        transform: scale(1.08);
+        transform: scale(1.06);
     }
 
     .ws-cell.found-vert {
@@ -249,32 +258,35 @@ interactive_app_code = """
 
     /* Kelime Bankası */
     .word-bank-header {
-        font-size: 11.5px;
+        font-size: 11px;
         font-weight: 700;
         color: #94a3b8;
         letter-spacing: 0.5px;
         text-transform: uppercase;
-        margin: 4px 0 6px 0;
+        margin: 2px 0 4px 0;
     }
 
     .word-chips-container {
         display: flex;
         flex-wrap: wrap;
-        gap: 5px;
+        gap: 4px;
         margin-bottom: 8px;
+        max-height: 110px;
+        overflow-y: auto;
+        padding-right: 4px;
     }
 
     .word-chip {
         background-color: #1e293b;
         border: 1px solid #334155;
         border-radius: 6px;
-        padding: 4px 8px;
-        font-size: 11px;
+        padding: 3px 7px;
+        font-size: 10.5px;
         font-weight: 600;
         color: #94a3b8;
         display: flex;
         align-items: center;
-        gap: 5px;
+        gap: 4px;
         transition: all 0.2s;
     }
 
@@ -282,7 +294,7 @@ interactive_app_code = """
         background-color: rgba(56, 189, 248, 0.18);
         border-color: #38bdf8;
         color: #f8fafc;
-        box-shadow: 0 0 8px rgba(56, 189, 248, 0.3);
+        box-shadow: 0 0 6px rgba(56, 189, 248, 0.25);
     }
 
     .word-chip.placed {
@@ -292,12 +304,12 @@ interactive_app_code = """
         text-decoration: line-through;
     }
 
-    /* Sürüklenebilir Palet */
+    /* Parça Tepsisi */
     .tokens-tray-title {
-        font-size: 11.5px;
+        font-size: 11px;
         font-weight: 700;
         color: #38bdf8;
-        margin: 6px 0 6px 0;
+        margin: 4px 0 4px 0;
         display: flex;
         align-items: center;
         gap: 6px;
@@ -320,13 +332,13 @@ interactive_app_code = """
         color: #ffffff;
         border: 1px solid #38bdf8;
         border-radius: 6px;
-        padding: 4px 9px;
-        font-size: 11px;
+        padding: 4px 8px;
+        font-size: 10.5px;
         font-weight: 700;
         cursor: grab;
         display: inline-flex;
         align-items: center;
-        gap: 5px;
+        gap: 4px;
         box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
         touch-action: none;
     }
@@ -346,14 +358,13 @@ interactive_app_code = """
         border-color: #c084fc;
     }
 
-    .drag-token.pdh {
-        background: linear-gradient(135deg, #0d9488 0%, #115e59 100%);
-        border-color: #2dd4bf;
+    .drag-token.energy {
+        background: linear-gradient(135deg, #d97706 0%, #b45309 100%);
+        border-color: #fbbf24;
+        color: #fffbeb;
     }
 
-    /* =========================================================
-    SAĞ TARAF: PDH KÖPRÜSÜ & KREBS SİKLUSU ŞEMASI
-    ========================================================= */
+    /* SAĞ PANEL: ŞEMA VE YERLEŞİMLER */
     .diagram-container {
         display: flex;
         flex-direction: column;
@@ -361,12 +372,12 @@ interactive_app_code = """
         position: relative;
     }
 
-    /* PDH Üst Blok */
+    /* PDH Köprüsü */
     .pdh-bridge-box {
         background: linear-gradient(180deg, #1e293b 0%, #0f172a 100%);
         border: 2px solid #38bdf8;
         border-radius: 14px;
-        padding: 12px 14px;
+        padding: 10px 14px;
         position: relative;
     }
 
@@ -377,7 +388,7 @@ interactive_app_code = """
         left: 50%;
         transform: translateX(-50%);
         color: #38bdf8;
-        font-size: 10px;
+        font-size: 9.5px;
         font-weight: 700;
         background: #0f172a;
         padding: 1px 8px;
@@ -387,23 +398,23 @@ interactive_app_code = """
     }
 
     .pdh-title-bar {
-        font-size: 11px;
+        font-size: 10.5px;
         font-weight: 700;
         color: #38bdf8;
         letter-spacing: 0.8px;
         text-transform: uppercase;
-        margin-bottom: 8px;
+        margin-bottom: 6px;
         display: flex;
         justify-content: space-between;
     }
 
     .pdh-section-sub {
-        font-size: 10px;
+        font-size: 9.5px;
         font-weight: 700;
         color: #94a3b8;
         letter-spacing: 0.5px;
         text-transform: uppercase;
-        margin: 6px 0 4px 0;
+        margin: 5px 0 3px 0;
         display: flex;
         align-items: center;
         gap: 6px;
@@ -421,8 +432,8 @@ interactive_app_code = """
         background-color: #0b1120;
         border: 1px solid #334155;
         border-radius: 8px;
-        padding: 5px 9px;
-        font-size: 11px;
+        padding: 4px 8px;
+        font-size: 10.5px;
         font-weight: 700;
         color: #94a3b8;
         text-align: center;
@@ -432,28 +443,27 @@ interactive_app_code = """
     .fixed-node strong {
         color: #f8fafc;
         display: block;
-        font-size: 12px;
+        font-size: 11.5px;
     }
 
-    /* Döngü Çerçevesi */
+    /* Krebs Döngüsü Sahnesi */
     .krebs-cycle-stage {
         position: relative;
         width: 100%;
-        height: 610px;
-        background: radial-gradient(circle at center, rgba(56, 189, 248, 0.05) 0%, rgba(15, 23, 42, 0.95) 75%);
+        height: 640px;
+        background: radial-gradient(circle at center, rgba(56, 189, 248, 0.04) 0%, rgba(15, 23, 42, 0.95) 75%);
         border: 1px solid #1e293b;
         border-radius: 16px;
         overflow: hidden;
     }
 
-    /* Döngü Merkezi */
     .cycle-center-badge {
         position: absolute;
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
-        width: 140px;
-        height: 140px;
+        width: 146px;
+        height: 146px;
         background-color: #0b1120;
         border: 2px solid #38bdf8;
         border-radius: 50%;
@@ -462,26 +472,33 @@ interactive_app_code = """
         align-items: center;
         justify-content: center;
         text-align: center;
-        box-shadow: 0 0 22px rgba(56, 189, 248, 0.15);
+        box-shadow: 0 0 24px rgba(56, 189, 248, 0.15);
         z-index: 1;
-        padding: 8px;
+        padding: 6px;
     }
 
     .cycle-center-badge h3 {
         margin: 0;
-        font-size: 13px;
+        font-size: 12px;
         color: #f8fafc;
         font-family: 'Space Grotesk', sans-serif;
     }
 
-    .cycle-center-badge span {
-        font-size: 10.5px;
-        color: #38bdf8;
+    .cycle-center-badge span.total-atp {
+        font-size: 11px;
+        color: #fbbf24;
         margin-top: 3px;
-        font-weight: 600;
+        font-weight: 700;
+        font-family: 'JetBrains Mono', monospace;
     }
 
-    /* Dairesel SVG Ok Yolu */
+    .cycle-center-badge span.yield-sub {
+        font-size: 8.5px;
+        color: #94a3b8;
+        line-height: 1.25;
+        margin-top: 3px;
+    }
+
     .cycle-svg {
         position: absolute;
         top: 0;
@@ -492,15 +509,15 @@ interactive_app_code = """
         z-index: 0;
     }
 
-    /* Bırakma Alanları (Drop Zones) */
+    /* Bırakma Kutuları */
     .drop-zone {
         position: absolute;
         background-color: #1e293b;
         border: 2px dashed #475569;
         border-radius: 8px;
-        padding: 4px 8px;
-        min-width: 105px;
-        min-height: 42px;
+        padding: 3px 6px;
+        min-width: 98px;
+        min-height: 38px;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -515,7 +532,7 @@ interactive_app_code = """
     .drop-zone.static-flow {
         position: static;
         flex: 1;
-        min-width: 100px;
+        min-width: 90px;
     }
 
     .drop-zone.hovered {
@@ -535,16 +552,24 @@ interactive_app_code = """
         border-color: #ef4444;
         background-color: rgba(239, 68, 68, 0.08);
     }
-
     .drop-zone.inhibitor-zone.correct {
-        border-style: solid;
         border-color: #ef4444;
         background-color: rgba(239, 68, 68, 0.25);
-        box-shadow: 0 0 10px rgba(239, 68, 68, 0.4);
+    }
+
+    /* Enerji Ürünleri Yuvası (GTP & FADH2) */
+    .drop-zone.energy-zone {
+        border-color: #f59e0b;
+        background-color: rgba(245, 158, 11, 0.09);
+    }
+    .drop-zone.energy-zone.correct {
+        border-color: #f59e0b;
+        background-color: rgba(245, 158, 11, 0.26);
+        box-shadow: 0 0 10px rgba(245, 158, 11, 0.4);
     }
 
     .drop-label {
-        font-size: 9px;
+        font-size: 8.5px;
         color: #94a3b8;
         font-weight: 700;
         letter-spacing: 0.4px;
@@ -553,34 +578,49 @@ interactive_app_code = """
 
     .placed-item {
         font-family: 'Space Grotesk', sans-serif;
-        font-size: 11.5px;
+        font-size: 11px;
         font-weight: 700;
         color: #f8fafc;
         margin-top: 1px;
     }
 
-    /* Geri Bildirim Bannerı */
+    /* Reaksiyon Canlı İndikatörleri */
+    .rxn-badge {
+        position: absolute;
+        background: rgba(14, 165, 233, 0.15);
+        border: 1px solid rgba(14, 165, 233, 0.4);
+        color: #38bdf8;
+        padding: 2px 7px;
+        border-radius: 12px;
+        font-size: 9px;
+        font-weight: 700;
+        font-family: 'JetBrains Mono', monospace;
+        z-index: 2;
+        pointer-events: none;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+    }
+
     .toast-message {
-        margin-top: 8px;
-        padding: 7px 12px;
+        margin-top: 6px;
+        padding: 6px 10px;
         border-radius: 8px;
-        font-size: 12.5px;
+        font-size: 12px;
         text-align: center;
         background-color: #1e293b;
         border: 1px solid #334155;
         color: #38bdf8;
-        min-height: 36px;
+        min-height: 32px;
         display: flex;
         align-items: center;
         justify-content: center;
         font-weight: 500;
     }
 
-    /* Modal / Tebrik Kutusu */
+    /* Başarı Modalı */
     .completion-overlay {
         position: absolute;
         top: 0; left: 0; width: 100%; height: 100%;
-        background: rgba(11, 17, 32, 0.92);
+        background: rgba(11, 17, 32, 0.94);
         display: none;
         flex-direction: column;
         align-items: center;
@@ -593,27 +633,43 @@ interactive_app_code = """
         background: #0f172a;
         border: 2px solid #22c55e;
         border-radius: 16px;
-        padding: 28px;
+        padding: 26px;
         text-align: center;
-        max-width: 480px;
+        max-width: 500px;
         box-shadow: 0 20px 40px rgba(0,0,0,0.7);
     }
     .completion-box h2 {
         color: #4ade80;
-        font-size: 26px;
+        font-size: 24px;
         margin: 0 0 10px 0;
         font-family: 'Space Grotesk', sans-serif;
     }
+
+    .final-time-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: rgba(245, 158, 11, 0.15);
+        color: #fbbf24;
+        border: 1px solid rgba(245, 158, 11, 0.4);
+        padding: 7px 16px;
+        border-radius: 20px;
+        font-size: 14.5px;
+        font-weight: 700;
+        font-family: 'JetBrains Mono', monospace;
+        margin: 6px 0 14px 0;
+    }
+
     .restart-btn {
         background: #38bdf8;
         color: #0b1120;
         border: none;
-        padding: 10px 24px;
+        padding: 9px 22px;
         font-weight: 700;
         border-radius: 30px;
         cursor: pointer;
-        margin-top: 16px;
-        font-size: 13.5px;
+        margin-top: 14px;
+        font-size: 13px;
     }
 </style>
 </head>
@@ -621,73 +677,78 @@ interactive_app_code = """
 
 <div class="app-wrapper">
 
-    <!-- SOL SÜTUN: KELİME AVI -->
+    <!-- SOL SÜTUN: 15x15 KELİME AVI -->
     <div class="panel-card">
         <div class="panel-header">
-            <h2 class="panel-title"><i class="fa-solid fa-magnifying-glass"></i> Kelime Avı Matrisi</h2>
-            <div class="score-badge" id="word-score">0 / 17 Bulundu</div>
+            <h2 class="panel-title"><i class="fa-solid fa-magnifying-glass"></i> Kelime Avı (15x15 Matris)</h2>
+            <div class="score-badge" id="word-score">0 / 20 Bulundu</div>
         </div>
 
         <div class="grid-container" id="grid-wrapper">
             <table class="ws-table" id="wordsearch-table"></table>
         </div>
 
-        <div class="word-bank-header"><i class="fa-solid fa-arrows-up-down"></i> Dikey & <i class="fa-solid fa-arrows-left-right"></i> Yatay Hedef Terimler</div>
+        <div class="word-bank-header">
+            <i class="fa-solid fa-arrows-up-down"></i> 10 DİKEY &nbsp;•&nbsp; 
+            <i class="fa-solid fa-arrows-left-right"></i> 10 YATAY TERİM
+        </div>
         <div class="word-chips-container" id="word-bank-chips"></div>
 
         <div class="tokens-tray-title">
             <i class="fa-solid fa-hand-pointer"></i> Şemaya Yerleştirilecek Parçalar
-            <span style="font-size:10px; color:#94a3b8; font-weight:normal; margin-left:auto;">(Sürükleyin veya Tıklayın)</span>
+            <span style="font-size:9.5px; color:#94a3b8; margin-left:auto;">(Sürükleyin veya Dokunun)</span>
         </div>
         <div class="tokens-tray" id="tokens-tray">
-            <span style="color:#64748b; font-size:11px; padding:6px;">Bulduğunuz terimler burada açılacaktır...</span>
+            <span style="color:#64748b; font-size:11px; padding:4px;">Bulduğunuz terimler burada açılacaktır...</span>
         </div>
 
         <div class="toast-message" id="toast-text">
-            Harfleri fareyle ya da parmağınızla kaydırarak ilk teriminizi bulun.
+            Harfleri kaydırarak ilk metaboliti veya enerji ürününü bulun.
         </div>
     </div>
 
-    <!-- SAĞ SÜTUN: PDH VE KREBS ŞEMASI -->
+    <!-- SAĞ SÜTUN: PDH KÖPRÜSÜ VE KREBS ENERJİ SİKLUSU -->
     <div class="panel-card">
         <div class="panel-header">
-            <h2 class="panel-title"><i class="fa-solid fa-circle-nodes"></i> PDH Köprüsü & Krebs Siklusu Şeması</h2>
-            <div class="score-badge" id="drop-score" style="color:#22c55e; border-color:rgba(34,197,94,0.3); background:rgba(34,197,94,0.12);">
-                0 / 17 Yerleşti
+            <h2 class="panel-title"><i class="fa-solid fa-bolt"></i> PDH Köprüsü & Krebs Siklusu (Enerji Reaksiyonları)</h2>
+            <div class="header-badges">
+                <div class="timer-badge" id="live-timer"><i class="fa-solid fa-stopwatch"></i> 00:00</div>
+                <div class="score-badge" id="drop-score" style="color:#22c55e; border-color:rgba(34,197,94,0.3); background:rgba(34,197,94,0.12);">
+                    0 / 20 Yerleşti
+                </div>
             </div>
         </div>
 
         <div class="diagram-container">
             
-            <!-- PDH Giriş Köprüsü (Tüm Kofaktör, Koenzim ve Blokaj Noktaları) -->
+            <!-- PDH Giriş Köprüsü (Tüm Kofaktörler, KoA, NADH & Toksinler) -->
             <div class="pdh-bridge-box">
                 <div class="pdh-title-bar">
                     <span>PİRUVAT DEHİDROJENAZ (PDH) KÖPRÜSÜ</span>
-                    <span style="color:#f87171;"><i class="fa-solid fa-triangle-exclamation"></i> 5 Kofaktör & Klinik Blokaj İstasyonu</span>
+                    <span style="color:#fbbf24;"><i class="fa-solid fa-bolt"></i> +1 NADH Üretimi (2.5 ATP)</span>
                 </div>
 
-                <!-- 1. Hat: Substrat, Koenzim A, NADH ve Ürün Akışı -->
-                <div class="pdh-section-sub"><i class="fa-solid fa-arrow-right-arrow-left"></i> 1. Ana Akış & Koenzimler</div>
+                <!-- 1. Hat: Substrat, KoA, NADH ve Asetil-KoA Akışı -->
+                <div class="pdh-section-sub"><i class="fa-solid fa-arrow-right-arrow-left"></i> 1. Ana Akış & Enerji Çıkışı</div>
                 <div class="pdh-flow-row">
                     <div class="fixed-node">Glikolizden<br><strong>PİRUVAT (3C)</strong></div>
-                    <i class="fa-solid fa-plus" style="color:#38bdf8; font-size:11px;"></i>
+                    <i class="fa-solid fa-plus" style="color:#38bdf8; font-size:10px;"></i>
                     <div class="drop-zone static-flow" id="slot-koenzima" data-accept="KOENZİMA">
                         <span class="drop-label">[AÇİL TAŞIYICI (B5)]</span>
                         <span class="placed-item">?</span>
                     </div>
-                    <i class="fa-solid fa-arrow-right" style="color:#38bdf8; font-size:11px;"></i>
-                    <div class="drop-zone static-flow" id="slot-nadh" data-accept="NADH">
-                        <span class="drop-label">[İNDİRGENMİŞ ÜRÜN (B3)]</span>
+                    <i class="fa-solid fa-arrow-right" style="color:#38bdf8; font-size:10px;"></i>
+                    <div class="drop-zone static-flow energy-zone" id="slot-nadh" data-accept="NADH">
+                        <span class="drop-label">⚡ [İNDİRGENEN (B3)]</span>
                         <span class="placed-item">?</span>
                     </div>
-                    <i class="fa-solid fa-arrow-right" style="color:#38bdf8; font-size:11px;"></i>
+                    <i class="fa-solid fa-arrow-right" style="color:#38bdf8; font-size:10px;"></i>
                     <div class="fixed-node" style="border-color:#38bdf8; background:rgba(56,189,248,0.1);">Siklusa Giriş<br><strong style="color:#38bdf8;">ASETİL-KoA (2C)</strong></div>
                 </div>
 
-                <!-- 2. Hat: E1, E2, E3 Kofaktörleri ve Toksikoloji / Patoloji -->
-                <div class="pdh-section-sub" style="margin-top:8px;"><i class="fa-solid fa-dna"></i> 2. Enzim Kompleksleri (E1-E2-E3) & Klinik</div>
+                <!-- 2. Hat: E1, E2, E3 Kofaktörleri ve Toksikoloji -->
+                <div class="pdh-section-sub" style="margin-top:6px;"><i class="fa-solid fa-dna"></i> 2. Enzim Kompleksleri (E1-E2-E3) & Klinik</div>
                 <div class="pdh-flow-row">
-                    <!-- E1 Kofaktörleri ve Klinik -->
                     <div class="drop-zone static-flow" id="slot-tiamin" data-accept="TİAMİN">
                         <span class="drop-label">[B1 VİTAMİNİ]</span>
                         <span class="placed-item">?</span>
@@ -700,8 +761,6 @@ interactive_app_code = """
                         <span class="drop-label">[B1 EKSİKLİĞİ]</span>
                         <span class="placed-item">Klinik ?</span>
                     </div>
-
-                    <!-- E2 Kofaktör ve İnhibitör -->
                     <div class="drop-zone static-flow" id="slot-lipoikasit" data-accept="LİPOİKASİT">
                         <span class="drop-label">[E2 KOFAKTÖRÜ]</span>
                         <span class="placed-item">?</span>
@@ -710,8 +769,6 @@ interactive_app_code = """
                         <span class="drop-label">[E2 ŞELASYONU / TOKSİN]</span>
                         <span class="placed-item">İnhibitör ?</span>
                     </div>
-
-                    <!-- E3 Kofaktör -->
                     <div class="drop-zone static-flow" id="slot-fad" data-accept="FAD">
                         <span class="drop-label">[E3 KOFAKTÖRÜ (B2)]</span>
                         <span class="placed-item">?</span>
@@ -719,10 +776,10 @@ interactive_app_code = """
                 </div>
             </div>
 
-            <!-- Dairesel Krebs Döngüsü Sahnesi -->
+            <!-- Dairesel Krebs Döngüsü Sahnesi (Tüm 8 Metabolit + Enerji Çıkışları) -->
             <div class="krebs-cycle-stage" id="cycle-stage">
 
-                <svg class="cycle-svg" viewBox="0 0 700 610">
+                <svg class="cycle-svg" viewBox="0 0 720 640">
                     <defs>
                         <linearGradient id="orbit-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
                             <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.8"/>
@@ -733,79 +790,106 @@ interactive_app_code = """
                             <path d="M 0 0 L 10 5 L 0 10 z" fill="#38bdf8"/>
                         </marker>
                     </defs>
-                    <!-- Ana Döngü Çemberi -->
-                    <circle cx="350" cy="305" r="215" fill="none" stroke="url(#orbit-gradient)" stroke-width="3" stroke-dasharray="8 6" />
+                    <!-- Yörünge Çemberi -->
+                    <circle cx="360" cy="320" r="225" fill="none" stroke="url(#orbit-gradient)" stroke-width="3" stroke-dasharray="8 6" />
                     <!-- Akış Okları -->
-                    <path d="M 350 90 A 215 215 0 0 1 565 305" fill="none" stroke="#38bdf8" stroke-width="3" marker-end="url(#arrow)"/>
-                    <path d="M 565 305 A 215 215 0 0 1 350 520" fill="none" stroke="#38bdf8" stroke-width="3" marker-end="url(#arrow)"/>
-                    <path d="M 350 520 A 215 215 0 0 1 135 305" fill="none" stroke="#38bdf8" stroke-width="3" marker-end="url(#arrow)"/>
-                    <path d="M 135 305 A 215 215 0 0 1 350 90" fill="none" stroke="#38bdf8" stroke-width="3" marker-end="url(#arrow)"/>
+                    <path d="M 360 95 A 225 225 0 0 1 585 320" fill="none" stroke="#38bdf8" stroke-width="3" marker-end="url(#arrow)"/>
+                    <path d="M 585 320 A 225 225 0 0 1 360 545" fill="none" stroke="#38bdf8" stroke-width="3" marker-end="url(#arrow)"/>
+                    <path d="M 360 545 A 225 225 0 0 1 135 320" fill="none" stroke="#38bdf8" stroke-width="3" marker-end="url(#arrow)"/>
+                    <path d="M 135 320 A 225 225 0 0 1 360 95" fill="none" stroke="#38bdf8" stroke-width="3" marker-end="url(#arrow)"/>
                 </svg>
 
                 <!-- Merkez Rozeti -->
                 <div class="cycle-center-badge">
-                    <i class="fa-solid fa-atom" style="font-size:22px; color:#38bdf8; margin-bottom:3px;"></i>
+                    <i class="fa-solid fa-atom" style="font-size:22px; color:#38bdf8; margin-bottom:2px;"></i>
                     <h3>SİTRİK ASİT SİKLUSU</h3>
-                    <span>1 Tur = 10 ATP</span>
-                    <span style="color:#94a3b8; font-size:9px;">(3 NADH, 1 FADH2, 1 GTP)</span>
+                    <span class="total-atp">1 Tur = 10 ATP</span>
+                    <span class="yield-sub">3 NADH (7.5 ATP)<br>1 FADH₂ (1.5 ATP)<br>1 GTP (1 ATP)</span>
                 </div>
 
                 <!-- 1. SİTRAT -->
-                <div class="drop-zone" id="slot-sitrat" data-accept="SİTRAT" style="top:40px; right:150px;">
+                <div class="drop-zone" id="slot-sitrat" data-accept="SİTRAT" style="top:32px; right:170px;">
                     <span class="drop-label">1. BASAMAK (6C)</span>
                     <span class="placed-item">?</span>
                 </div>
 
-                <!-- İNHİBİTÖR: FLOROASETAT (Akonitaz Bloker) -->
-                <div class="drop-zone inhibitor-zone" id="slot-floroasetat" data-accept="FLOROASETAT" style="top:110px; right:12px; min-width:105px;">
+                <!-- İNHİBİTÖR: FLOROASETAT -->
+                <div class="drop-zone inhibitor-zone" id="slot-floroasetat" data-accept="FLOROASETAT" style="top:85px; right:12px; min-width:95px;">
                     <span class="drop-label">[ÖLÜMCÜL SENTEZ]</span>
                     <span class="placed-item">İnhibitör ?</span>
                 </div>
 
                 <!-- 2. İZOSİTRAT -->
-                <div class="drop-zone" id="slot-izositrat" data-accept="İZOSİTRAT" style="top:205px; right:40px;">
+                <div class="drop-zone" id="slot-izositrat" data-accept="İZOSİTRAT" style="top:165px; right:35px;">
                     <span class="drop-label">2. BASAMAK (6C)</span>
                     <span class="placed-item">?</span>
                 </div>
 
-                <!-- 3. ALFA-KETOGLUTARAT (Sabit Kılavuz Düğüm) -->
-                <div class="fixed-node" style="position:absolute; bottom:185px; right:40px; min-width:115px; border-color:#38bdf8;">
-                    <span class="drop-label" style="color:#38bdf8;">3. BASAMAK (5C)</span>
-                    <strong style="font-size:11.5px;">α-Ketoglutarat</strong>
+                <!-- REAKSİYON 3: 1. NADH ÇIKIŞI -->
+                <div class="rxn-badge" style="top:232px; right:14px;">
+                    ⚡ 1. NADH + CO₂ <span style="font-size:8px; color:#94a3b8;">(İzositrat DH)</span>
+                </div>
+
+                <!-- 3. KETOGLUTARAT -->
+                <div class="drop-zone" id="slot-ketoglutarat" data-accept="KETOGLUTARAT" style="top:285px; right:28px;">
+                    <span class="drop-label">3. BASAMAK (5C)</span>
+                    <span class="placed-item">?</span>
+                </div>
+
+                <!-- REAKSİYON 4: 2. NADH ÇIKIŞI -->
+                <div class="rxn-badge" style="bottom:175px; right:35px;">
+                    ⚡ 2. NADH + CO₂ <span style="font-size:8px; color:#94a3b8;">(α-KG DH)</span>
                 </div>
 
                 <!-- 4. SÜKSİNİL-KoA -->
-                <div class="drop-zone" id="slot-suksinilkoa" data-accept="SÜKSİNİLKOA" style="bottom:70px; right:140px;">
+                <div class="drop-zone" id="slot-suksinilkoa" data-accept="SÜKSİNİLKOA" style="bottom:115px; right:105px;">
                     <span class="drop-label">4. BASAMAK (TİYOESTER)</span>
                     <span class="placed-item">?</span>
                 </div>
 
+                <!-- REAKSİYON 5: GTP ÜRETİMİ (ENERJİ ÇIKIŞI) -->
+                <div class="drop-zone energy-zone" id="slot-gtp" data-accept="GTP" style="bottom:45px; right:225px; min-width:95px;">
+                    <span class="drop-label">⚡ REAKSİYON 5: GTP (1 ATP)</span>
+                    <span class="placed-item">GTP ?</span>
+                </div>
+
                 <!-- 5. SÜKSİNAT -->
-                <div class="drop-zone" id="slot-suksinat" data-accept="SÜKSİNAT" style="bottom:18px; left:50%; transform:translateX(-50%);">
-                    <span class="drop-label">5. BASAMAK (GTP ÜRETİMİ)</span>
+                <div class="drop-zone" id="slot-suksinat" data-accept="SÜKSİNAT" style="bottom:18px; left:48%; transform:translateX(-50%);">
+                    <span class="drop-label">5. BASAMAK (SÜKSİNAT)</span>
                     <span class="placed-item">?</span>
                 </div>
 
-                <!-- İNHİBİTÖR: MALONAT (Kompleks II Bloker) -->
-                <div class="drop-zone inhibitor-zone" id="slot-malonat" data-accept="MALONAT" style="bottom:85px; left:20px; min-width:100px;">
+                <!-- REAKSİYON 6: FADH2 ÇIKIŞI (ENERJİ ÇIKIŞI) -->
+                <div class="drop-zone energy-zone" id="slot-fadh2" data-accept="FADH2" style="bottom:55px; left:145px; min-width:105px;">
+                    <span class="drop-label">⚡ REAKSİYON 6: FADH₂</span>
+                    <span class="placed-item">FADH₂ ?</span>
+                </div>
+
+                <!-- İNHİBİTÖR: MALONAT -->
+                <div class="drop-zone inhibitor-zone" id="slot-malonat" data-accept="MALONAT" style="bottom:135px; left:18px; min-width:92px;">
                     <span class="drop-label">[KOMPETİTİF İNH.]</span>
                     <span class="placed-item">İnhibitör ?</span>
                 </div>
 
                 <!-- 6. FUMARAT -->
-                <div class="drop-zone" id="slot-fumarat" data-accept="FUMARAT" style="bottom:175px; left:75px;">
-                    <span class="drop-label">6. BASAMAK (FADH2)</span>
+                <div class="drop-zone" id="slot-fumarat" data-accept="FUMARAT" style="bottom:205px; left:65px;">
+                    <span class="drop-label">6. BASAMAK (4C)</span>
                     <span class="placed-item">?</span>
                 </div>
 
                 <!-- 7. MALAT -->
-                <div class="drop-zone" id="slot-malat" data-accept="MALAT" style="top:225px; left:45px;">
+                <div class="drop-zone" id="slot-malat" data-accept="MALAT" style="top:235px; left:38px;">
                     <span class="drop-label">7. BASAMAK (HİDRASYON)</span>
                     <span class="placed-item">?</span>
                 </div>
 
+                <!-- REAKSİYON 8: 3. NADH ÇIKIŞI -->
+                <div class="rxn-badge" style="top:150px; left:25px;">
+                    ⚡ 3. NADH <span style="font-size:8px; color:#94a3b8;">(Malat DH)</span>
+                </div>
+
                 <!-- 8. OKSALOASETAT -->
-                <div class="drop-zone" id="slot-oksaloasetat" data-accept="OKSALOASETAT" style="top:50px; left:140px;">
+                <div class="drop-zone" id="slot-oksaloasetat" data-accept="OKSALOASETAT" style="top:45px; left:145px;">
                     <span class="drop-label">8. BASAMAK (REJENERASYON)</span>
                     <span class="placed-item">?</span>
                 </div>
@@ -821,10 +905,13 @@ interactive_app_code = """
 <!-- Kutlama Modalı -->
 <div class="completion-overlay" id="modal-success">
     <div class="completion-box">
-        <i class="fa-solid fa-trophy" style="font-size: 52px; color:#fbbf24; margin-bottom:12px;"></i>
+        <i class="fa-solid fa-trophy" style="font-size: 48px; color:#fbbf24; margin-bottom:12px;"></i>
         <h2>Tebrikler Hekim Adayı!</h2>
-        <p style="color:#cbd5e1; font-size:13.5px; line-height:1.6;">
-            Krebs döngüsü ve PDH köprüsündeki 17 terimin tamamını (metabolitler, 5 kofaktör, KoA, NADH ve klinik blokajları) eksiksiz bulup şemaya yerleştirdiniz!
+        <div class="final-time-badge" id="final-time-container">
+            <i class="fa-solid fa-stopwatch"></i> Süre: <span id="final-time-val">00:00</span>
+        </div>
+        <p style="color:#cbd5e1; font-size:13px; line-height:1.55;">
+            Krebs döngüsündeki 8 ara ürünü, PDH kofaktörlerini, toksik blokajları ve enerji çıkış noktalarını (NADH, FADH₂ ve GTP) eksiksiz tamamlayarak 10 ATP'lik metabolik enerji hasadını başarıyla yönettiniz!
         </p>
         <button class="restart-btn" onclick="location.reload();">Tekrar Çöz</button>
     </div>
@@ -832,28 +919,29 @@ interactive_app_code = """
 
 <script>
 /* =========================================================================
-1. HARF MATRİSİ VE GİZLİ KELİME VERİLERİ (YATAY & DİKEY DÜZEN - 17 KELİME)
+1. 15x15 HARF MATRİSİ VE 20 TERİMLİK KATALOG (10 DİKEY + 10 YATAY)
 ========================================================================= */
 const GRID_DATA = [
-    ['O','S','İ','T','R','A','T','B','F','A','D','Z','P','K'],
-    ['K','T','İ','A','M','İ','N','C','L','N','A','D','H','R'],
-    ['S','E','Z','V','Y','B','S','D','O','M','F','G','C','T'],
-    ['A','K','O','P','S','L','Ü','R','R','H','U','B','E','N'],
-    ['L','O','S','G','Ü','T','K','B','O','N','M','E','S','D'],
-    ['O','E','İ','M','K','D','S','K','A','P','A','R','V','Z'],
-    ['A','N','T','Y','S','R','İ','L','S','C','R','İ','M','Y'],
-    ['S','Z','R','F','İ','H','N','P','E','D','A','B','A','G'],
-    ['E','İ','A','B','N','G','İ','T','T','L','T','E','L','C'],
-    ['T','M','T','H','A','V','L','S','A','E','B','R','A','F'],
-    ['A','A','P','K','T','D','K','R','T','M','C','İ','T','H'],
-    ['T','B','L','G','C','N','O','M','A','L','O','N','A','T'],
-    ['L','İ','P','O','İ','K','A','S','İ','T','F','Z','K','Y'],
-    ['D','A','R','S','E','N','İ','K','G','V','T','P','P','M']
+    // 0    1    2    3    4    5    6    7    8    9    10   11   12   13   14
+    ['O', 'S', 'İ', 'T', 'R', 'A', 'T', 'B', 'F', 'A', 'D', 'Z', 'P', 'K', 'V'], // 0 (SİTRAT 1-6, FAD 8-10)
+    ['K', 'T', 'İ', 'A', 'M', 'İ', 'N', 'C', 'L', 'N', 'A', 'D', 'H', 'R', 'K'], // 1 (TİAMİN 1-6, NADH 9-12, KETOGLUTARAT başlar)
+    ['S', 'E', 'Z', 'V', 'Y', 'B', 'S', 'D', 'O', 'M', 'F', 'G', 'C', 'T', 'E'], // 2 (SÜKSİNİLKOA başlar, FUMARAT başlar)
+    ['A', 'K', 'O', 'P', 'S', 'L', 'Ü', 'R', 'R', 'H', 'U', 'B', 'E', 'N', 'T'], // 3 (KOENZİMA, SÜKSİNAT, BERİBERİ başlar)
+    ['L', 'O', 'S', 'G', 'Ü', 'T', 'K', 'B', 'O', 'N', 'M', 'E', 'S', 'D', 'O'], // 4
+    ['O', 'E', 'İ', 'M', 'K', 'D', 'S', 'K', 'A', 'P', 'A', 'R', 'V', 'Z', 'G'], // 5
+    ['A', 'N', 'T', 'Y', 'S', 'R', 'İ', 'L', 'S', 'C', 'R', 'İ', 'M', 'Y', 'L'], // 6 (MALAT başlar)
+    ['S', 'Z', 'R', 'F', 'İ', 'H', 'N', 'P', 'E', 'D', 'A', 'B', 'A', 'G', 'U'], // 7
+    ['E', 'İ', 'A', 'B', 'N', 'G', 'İ', 'T', 'T', 'L', 'T', 'E', 'L', 'C', 'T'], // 8 (FUMARAT biter)
+    ['T', 'M', 'T', 'H', 'A', 'V', 'L', 'S', 'A', 'E', 'B', 'R', 'A', 'F', 'A'], // 9 (İZOSİTRAT biter)
+    ['A', 'A', 'P', 'K', 'T', 'D', 'K', 'R', 'T', 'M', 'C', 'İ', 'T', 'H', 'R'], // 10 (SÜKSİNAT, KOENZİMA, FLOROASETAT, BERİBERİ, MALAT biter)
+    ['T', 'B', 'L', 'G', 'C', 'N', 'O', 'M', 'A', 'L', 'O', 'N', 'A', 'T', 'A'], // 11 (OKSALOASETAT biter, MALONAT 7-13)
+    ['L', 'İ', 'P', 'O', 'İ', 'K', 'A', 'S', 'İ', 'T', 'F', 'Z', 'K', 'Y', 'T'], // 12 (LİPOİKASİT 0-9, SÜKSİNİLKOA biter, KETOGLUTARAT biter)
+    ['D', 'A', 'R', 'S', 'E', 'N', 'İ', 'K', 'G', 'V', 'T', 'P', 'P', 'M', 'N'], // 13 (ARSENİK 1-7, TPP 10-12)
+    ['Z', 'G', 'T', 'P', 'X', 'E', 'F', 'A', 'D', 'H', '2', 'W', 'R', 'S', 'K']  // 14 (GTP 1-3, FADH2 6-10)
 ];
 
-// Aranan 17 Kelime Kataloğu (Hepsinin Şemada Birebir Karşılığı Vardır)
 const WORDS_TO_FIND = [
-    // DİKEYLER (9 Adet)
+    // 10 DİKEY KELİME
     { word: "OKSALOASETAT", dir: "vert", r1:0, c1:0, r2:11, c2:0, found: false, placed: false, role: "cycle" },
     { word: "KOENZİMA",     dir: "vert", r1:3, c1:1, r2:10, c2:1, found: false, placed: false, role: "pdh" },
     { word: "İZOSİTRAT",    dir: "vert", r1:1, c1:2, r2:9,  c2:2, found: false, placed: false, role: "cycle" },
@@ -863,15 +951,19 @@ const WORDS_TO_FIND = [
     { word: "FUMARAT",      dir: "vert", r1:2, c1:10,r2:8,  c2:10,found: false, placed: false, role: "cycle" },
     { word: "BERİBERİ",     dir: "vert", r1:3, c1:11,r2:10, c2:11,found: false, placed: false, role: "clinical" },
     { word: "MALAT",        dir: "vert", r1:6, c1:12,r2:10, c2:12,found: false, placed: false, role: "cycle" },
-    // YATAYLAR (8 Adet)
+    { word: "KETOGLUTARAT", dir: "vert", r1:1, c1:14,r2:12, c2:14,found: false, placed: false, role: "cycle" },
+
+    // 10 YATAY KELİME
     { word: "SİTRAT",       dir: "horiz",r1:0, c1:1, r2:0,  c2:6, found: false, placed: false, role: "cycle" },
     { word: "FAD",          dir: "horiz",r1:0, c1:8, r2:0,  c2:10,found: false, placed: false, role: "cofactor" },
     { word: "TİAMİN",       dir: "horiz",r1:1, c1:1, r2:1,  c2:6, found: false, placed: false, role: "cofactor" },
-    { word: "NADH",         dir: "horiz",r1:1, c1:9, r2:1,  c2:12,found: false, placed: false, role: "cofactor" },
+    { word: "NADH",         dir: "horiz",r1:1, c1:9, r2:1,  c2:12,found: false, placed: false, role: "energy" },
     { word: "MALONAT",      dir: "horiz",r1:11,c1:7, r2:11, c2:13,found: false, placed: false, role: "inhibitor" },
     { word: "LİPOİKASİT",   dir: "horiz",r1:12,c1:0, r2:12, c2:9, found: false, placed: false, role: "cofactor" },
     { word: "ARSENİK",      dir: "horiz",r1:13,c1:1, r2:13, c2:7, found: false, placed: false, role: "inhibitor" },
-    { word: "TPP",          dir: "horiz",r1:13,c1:10,r2:13, c2:12,found: false, placed: false, role: "cofactor" }
+    { word: "TPP",          dir: "horiz",r1:13,c1:10,r2:13, c2:12,found: false, placed: false, role: "cofactor" },
+    { word: "GTP",          dir: "horiz",r1:14,c1:1, r2:14, c2:3, found: false, placed: false, role: "energy" },
+    { word: "FADH2",        dir: "horiz",r1:14,c1:6, r2:14, c2:10,found: false, placed: false, role: "energy" }
 ];
 
 let isSelecting = false;
@@ -882,7 +974,7 @@ let placedTokensCount = 0;
 let selectedTokenForPlacement = null;
 
 /* =========================================================================
-2. MATRİS VE KELİME BANKASI OLUŞTURMA
+2. MATRİS VE BANKA OLUŞTURMA
 ========================================================================= */
 const table = document.getElementById("wordsearch-table");
 const chipsContainer = document.getElementById("word-bank-chips");
@@ -910,13 +1002,42 @@ WORDS_TO_FIND.forEach(w => {
 });
 
 /* =========================================================================
-3. SEÇİM MANTIĞI: HEM FARE (MOUSE) HEM DOKUNMATİK (TOUCH)
+3. CANLI SÜRE SAYACI
+========================================================================= */
+let startTime = Date.now();
+let timerInterval = null;
+let elapsedSeconds = 0;
+let timerRunning = true;
+
+function updateTimer() {
+    if (!timerRunning) return;
+    elapsedSeconds = Math.floor((Date.now() - startTime) / 1000);
+    const mins = Math.floor(elapsedSeconds / 60);
+    const secs = elapsedSeconds % 60;
+    const formatted = `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+    const timerElem = document.getElementById("live-timer");
+    if (timerElem) {
+        timerElem.innerHTML = `<i class="fa-solid fa-stopwatch"></i> ${formatted}`;
+    }
+}
+timerInterval = setInterval(updateTimer, 1000);
+
+function stopTimer() {
+    timerRunning = false;
+    clearInterval(timerInterval);
+    const mins = Math.floor(elapsedSeconds / 60);
+    const secs = elapsedSeconds % 60;
+    let finalStr = mins > 0 ? `${mins} dakika ${secs} saniye` : `${secs} saniye`;
+    const finalVal = document.getElementById("final-time-val");
+    if (finalVal) finalVal.innerText = finalStr;
+}
+
+/* =========================================================================
+4. SEÇİM MANTIĞI (TOUCH & MOUSE)
 ========================================================================= */
 function getCellFromPoint(x, y) {
     const el = document.elementFromPoint(x, y);
-    if (el && el.classList.contains("ws-cell")) {
-        return el;
-    }
+    if (el && el.classList.contains("ws-cell")) return el;
     return null;
 }
 
@@ -931,24 +1052,18 @@ function handleSelectionStart(cell) {
 
 function handleSelectionMove(cell) {
     if (!isSelecting || !startCell || !cell) return;
-    
     const r1 = parseInt(startCell.dataset.row);
     const c1 = parseInt(startCell.dataset.col);
     const r2 = parseInt(cell.dataset.row);
     const c2 = parseInt(cell.dataset.col);
 
-    const isHoriz = (r1 === r2);
-    const isVert = (c1 === c2);
-
-    if (!isHoriz && !isVert) return;
+    if (r1 !== r2 && c1 !== c2) return;
 
     clearSelectionStyles();
     selectedCells = [];
 
-    const minR = Math.min(r1, r2);
-    const maxR = Math.max(r1, r2);
-    const minC = Math.min(c1, c2);
-    const maxC = Math.max(c1, c2);
+    const minR = Math.min(r1, r2), maxR = Math.max(r1, r2);
+    const minC = Math.min(c1, c2), maxC = Math.max(c1, c2);
 
     for (let r = minR; r <= maxR; r++) {
         for (let c = minC; c <= maxC; c++) {
@@ -987,8 +1102,7 @@ function handleSelectionEnd() {
             if (chip) chip.classList.add("found");
 
             createDraggableToken(match);
-
-            showToast(`Harika! "${match.word}" bulundu. Şimdi sağdaki şemada uygun kutucuğa yerleştirin.`, "#38bdf8");
+            showToast(`Harika! "${match.word}" bulundu. Şemadaki hedef kutusuna yerleştirin.`, "#38bdf8");
             playSuccessSound();
         }
     }
@@ -1001,18 +1115,14 @@ function clearSelectionStyles() {
 }
 
 table.addEventListener("mousedown", (e) => {
-    if (e.target.classList.contains("ws-cell")) {
-        handleSelectionStart(e.target);
-    }
+    if (e.target.classList.contains("ws-cell")) handleSelectionStart(e.target);
 });
-
 window.addEventListener("mousemove", (e) => {
     if (isSelecting) {
         const cell = getCellFromPoint(e.clientX, e.clientY);
         handleSelectionMove(cell);
     }
 });
-
 window.addEventListener("mouseup", handleSelectionEnd);
 
 table.addEventListener("touchstart", (e) => {
@@ -1028,16 +1138,14 @@ window.addEventListener("touchmove", (e) => {
     if (isSelecting) {
         const touch = e.touches[0];
         const cell = getCellFromPoint(touch.clientX, touch.clientY);
-        if (cell) {
-            handleSelectionMove(cell);
-        }
+        if (cell) handleSelectionMove(cell);
     }
 }, { passive: false });
 
 window.addEventListener("touchend", handleSelectionEnd);
 
 /* =========================================================================
-4. SÜRÜKLE - BIRAK VE DOKUNARAK YERLEŞTİRME SİSTEMİ
+5. SÜRÜKLE - BIRAK VE DOKUNARAK YERLEŞTİRME
 ========================================================================= */
 function createDraggableToken(match) {
     if (tokensTray.querySelector("span")) {
@@ -1063,8 +1171,8 @@ function createDraggableToken(match) {
     token.addEventListener("click", () => {
         document.querySelectorAll(".drag-token").forEach(t => t.style.outline = "none");
         selectedTokenForPlacement = match.word;
-        token.style.outline = "2px solid #facc15";
-        showToast(`"${match.word}" seçildi. Şimdi yerleştirmek istediğiniz hedef kutucuğa tıklayın.`, "#facc15");
+        token.style.outline = "2px solid #fbbf24";
+        showToast(`"${match.word}" seçildi. Şimdi şemadaki kutucuğa tıklayın.`, "#fbbf24");
     });
 
     tokensTray.appendChild(token);
@@ -1114,10 +1222,11 @@ function checkAndPlaceToken(zone, word) {
         placedTokensCount++;
         document.getElementById("drop-score").innerText = `${placedTokensCount} / ${WORDS_TO_FIND.length} Yerleşti`;
 
-        showToast(`Harika! ${word} doğru basamağa başarıyla yerleştirildi.`, "#22c55e");
+        showToast(`Tebrikler! ${word} doğru hedefe başarıyla yerleşti.`, "#22c55e");
         playSnapSound();
 
         if (placedTokensCount >= WORDS_TO_FIND.length) {
+            stopTimer();
             setTimeout(() => {
                 document.getElementById("modal-success").classList.add("show");
             }, 500);
@@ -1125,7 +1234,7 @@ function checkAndPlaceToken(zone, word) {
     } else {
         zone.style.animation = "shake 0.3s ease";
         setTimeout(() => zone.style.animation = "", 350);
-        showToast(`Bu hedef kutucuğu "${word}" için uygun değil. Kofaktör ve basamak ipuçlarını inceleyin!`, "#ef4444");
+        showToast(`Bu kutu "${word}" için uygun değil. İpuçlarını kontrol edin!`, "#ef4444");
     }
 }
 
@@ -1137,7 +1246,7 @@ function showToast(msg, color="#38bdf8") {
 }
 
 /* =========================================================================
-5. WEB AUDIO API SES GERİ BİLDİRİMİ
+6. SES EFEKTLERİ (WEB AUDIO API)
 ========================================================================= */
 let audioCtx = null;
 function initAudio() {
@@ -1184,4 +1293,4 @@ function playSnapSound() {
 """
 
 # Streamlit Bileşeni Olarak Render Et
-components.html(interactive_app_code, height=1050, scrolling=False)
+components.html(interactive_app_code, height=1120, scrolling=False)
